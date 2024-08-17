@@ -1,5 +1,5 @@
 class Card:
-
+    
     #Declare a new Card with rank and suit value
     def __init__(self, rank, suit):
         self.rank = rank

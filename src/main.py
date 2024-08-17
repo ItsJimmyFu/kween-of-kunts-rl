@@ -4,8 +4,12 @@ from game.deck import Deck
 
 def main():
 
-    deck = Deck()
-    print(deck)
+    #Initialise the deck and shuffle into 4 hands
+    deck = Deck(joker=True)
+    deck.shuffle()
+    hands = deck.splitHands(4)
+
+    
 
 if __name__ == "__main__":
     sys.path.append('..')
