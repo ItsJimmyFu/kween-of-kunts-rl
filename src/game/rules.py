@@ -30,14 +30,14 @@ def valid_move(prev_move,new_move,start=False):
 
 #Check if previous move is the trump card
 def prev_move_trump_card(prev_move):
-    if((len(prev_move) == 1) and (prev_move[0].suit == 'Spades') and (prev_move[0].rank==12)):
+    if((len(prev_move) == 1) and (prev_move[0].suit == 'Spades') and (prev_move[0].rank=='Q')):
         return True
     else:
         return False
 
 #Check if new move is the trump card
 def new_move_trump_card(new_move):
-    if(len(new_move) == 1 and new_move[0].suit == 'Spades' and new_move[0].rank==12):
+    if(len(new_move) == 1 and new_move[0].suit == 'Spades' and new_move[0].rank=='Q'):
         return True
     else:
         return False
@@ -45,7 +45,7 @@ def new_move_trump_card(new_move):
 #Check if the move contains the 3 of Clubs card
 def valid_first_move(new_move):
     for card in new_move:
-        if(card.rank==3 and card.suit=='Clubs'):
+        if(card.rank=='3' and card.suit=='Clubs'):
             return True
     return False
 

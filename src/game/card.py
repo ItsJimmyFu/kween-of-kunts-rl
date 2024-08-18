@@ -1,7 +1,7 @@
 import functools
 
 class Card:
-    ordering = [3,4,5,6,7,8,9,10,11,12,13,1,2]
+    ordering = ['3','4','5','6','7','8','9','10','J','Q','K','A','2']
     
     #Declare a new Card with rank and suit value
     def __init__(self, rank, suit):
@@ -9,7 +9,10 @@ class Card:
         self.suit = suit
 
     def __str__(self):
-        return f"{self.rank} : {self.suit}"
+        return f"({self.rank} : {self.suit})"
+    
+    def __repr__(self) -> str:
+        return str(self)
     
     def __hash__(self):
         return hash((self.suit, self.rank))
@@ -19,11 +22,11 @@ class Card:
             return NotImplemented
         
         if(self.rank == 'Joker'):
-            self_val = 2
+            self_val = '2'
         else:
             self_val = self.rank
         if(other.rank == 'Joker'):
-            other_val = 2
+            other_val = '2'
         else:
             other_val = other.rank
 
