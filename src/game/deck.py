@@ -26,11 +26,11 @@ class Deck:
 
     #Create the players by splitting the deck
     def splitHands(self,players):
-        players = []
+        hands = []
 
         for n in range(players):
-            players.append(Player([self.deck[idx] for idx in range(n,len(self.deck),players)]))
-        return players
+            hands.append(Player([self.deck[idx] for idx in range(n,len(self.deck),players)]))
+        return hands
     
     def __str__(self):
         cards = ', '.join(("(" + str(card)+")") for card in self.deck)

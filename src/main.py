@@ -8,7 +8,7 @@ def main():
     deck = Deck(joker=True)
     deck.shuffle()
     hands = deck.splitHands(4)
-
+    print(hands)
     
 
 if __name__ == "__main__":
