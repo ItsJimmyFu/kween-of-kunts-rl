@@ -12,12 +12,17 @@ def main():
         
         if(len(move)==0):
             print("Invalid Input")
+            continue
         if (not game.make_move(move)):
             print("Invalid Move")
             continue
         else:
             game.next_turn()
-    
+
+    print("Game Over")
+    for idx in range(len(game.players)):
+        print("Player:", idx ,"-", game.players[idx].placement)
+
 if __name__ == "__main__":
     sys.path.append('..')
     main()

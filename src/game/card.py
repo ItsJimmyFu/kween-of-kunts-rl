@@ -21,6 +21,12 @@ class Card:
         if not isinstance(other, Card):
             return NotImplemented
         
+        #Put Queen of Spades as the highest value
+        if(other.rank =='Q' and other.suit=='Spades'):
+            return True
+        if(self.rank =='Q' and self.suit=='Spades'):
+            return False
+        
         if(self.rank == 'Joker'):
             self_val = '2'
         else:
@@ -33,6 +39,23 @@ class Card:
         self_idx = self.ordering.index(self_val)
         other_idx = self.ordering.index(other_val)
         return (self_idx<=other_idx)
+    
+    def __lt__(self, other):
+        if not isinstance(other, Card):
+            return NotImplemented
+        
+        if(self.rank == 'Joker'):
+            self_val = '2'
+        else:
+            self_val = self.rank
+        if(other.rank == 'Joker'):
+            other_val = '2'
+        else:
+            other_val = other.rank
+
+        self_idx = self.ordering.index(self_val)
+        other_idx = self.ordering.index(other_val)
+        return (self_idx<other_idx)
     
     def __eq__(self, other):
       if isinstance(other, Card):

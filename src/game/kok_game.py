@@ -21,6 +21,7 @@ class Game:
         self.prev_move = []
         self.start = True
         self.over = False
+        self.current_placement=1
 
     def next_turn(self):
         turn = self.turn
@@ -28,20 +29,41 @@ class Game:
         playing_count = 0
         while(True):
             turn = (turn+1)%len(self.players)
-            #Check if player is still in the round
-            if(self.players[turn].playing):
+            #Check if player is still playing in the round and has not won
+            if(self.players[turn].playing and self.players[turn].placement==0):
                 #Set the next turn of a player that is not passing
                 if(next_turn == None):
                     next_turn = turn
                 playing_count += 1
 
-            #End loop when back to the player who just made a move
+            #End loop when back to the player who made the previous move
             if(turn == self.turn):
                 break
 
         #Reset the round if there is only one player left
         if(playing_count == 1):
             self.prev_move = []
+
+            #Check if player who has won the round has also finished the game,
+            if(self.players[self.turn].placement > 0):
+                #Set the next turn to the next player still in the game
+                turn = self.turn
+                next_turn = None
+                player_count = 0
+                while(True):
+                    turn = (turn+1)%len(self.players)
+                    if(self.players[turn].placement==0):
+                        if(next_turn == None):
+                            next_turn = turn
+                        player_count+= 1
+                    #If there is no more players end the game
+                    if(turn == self.turn):
+                        break
+                #End the game if only one player left
+                if(player_count == 1):
+                    self.players[next_turn].placement = self.current_placement
+                    self.over = True
+                    return
 
             #Add all players still in the game back to the new round
             for player in self.players:
@@ -50,8 +72,6 @@ class Game:
         
         self.turn = next_turn
         return
-        
-
 
     def make_move(self,move):
         #Check if player is passing this turn
@@ -73,11 +93,17 @@ class Game:
        
         self.prev_move = move
         self.players[self.turn].cards = self.players[self.turn].cards-move
+        
+        #Check if the player has won
+        if(len(self.players[self.turn].cards)==0):
+            self.players[self.turn].placement = self.current_placement
+            self.current_placement += 1
+
         return True
     
     #Display the hand of the current player's turn
     def display_player_hand(self):
-        print("Player", self.turn, ":", self.players[self.turn].cards)
+        print("Player", self.turn, ":", self.players[self.turn])
         print("Previous Move: ", self.prev_move)
         return self.players[self.turn].cards
     

@@ -3,8 +3,9 @@ from .player import Player
 import random
 
 class Deck:
-    RANKS = ['3','4','5','6','7','8','9','10','J','Q','K','A','2']
+    #RANKS = ['3','4','5','6','7','8','9','10','J','Q','K','A','2']
     SUITS = ['Hearts', 'Diamonds', 'Clubs', 'Spades']
+    RANKS = ['3','4','5']
 
     #Create a new deck of cards
     def __init__(self,joker):
