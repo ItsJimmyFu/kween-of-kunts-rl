@@ -1,14 +1,11 @@
 import sys
-from game.deck import Deck
+from game.kok_game import Game
 
 
 def main():
-
-    #Initialise the deck and shuffle into 4 hands
-    deck = Deck(joker=True)
-    deck.shuffle()
-    hands = deck.splitHands(4)
-    print(hands)
+    game = Game(4)
+    
+    
     
 
 if __name__ == "__main__":

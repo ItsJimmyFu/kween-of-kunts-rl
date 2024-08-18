@@ -49,6 +49,7 @@ def test_valid_moves():
     assert(valid_move([Card(1,'Hearts'), Card('Joker','Black')],[Card(2,'Clubs'),Card('Joker','Red')]))
     assert(valid_move([Card(6,'Hearts'), Card(6,'Diamonds'), Card(6,'Clubs')], [Card(11,'Clubs'),Card(11,'Diamonds'),Card(11,'Hearts')]))
     assert(valid_move([Card(1,'Spades')],[Card('Joker','Red')]))
+    assert(valid_move([Card(3,'Diamonds')],[Card(3,'Hearts')]))
     assert(valid_move([Card('Joker','Black')],[Card('Joker','Red')]))
     assert(valid_move([Card(2,'Diamonds'),Card(2,'Spades')],[Card('Joker','Black'),Card('Joker','Red')]))
     assert(valid_move([Card('Joker','Black')],[Card(2,'Diamond')]))

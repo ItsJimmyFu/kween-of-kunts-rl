@@ -1,4 +1,5 @@
 from src.game.deck import Deck
+from src.game.card import Card
 
 
 def test_deck_init():
@@ -9,6 +10,12 @@ def test_deck_init():
     deck = Deck(joker=False)
     assert(len(deck.deck) == len(set(deck.deck)))
     assert(len(deck.deck) == 52)
+
+def test_card_comparison():
+    assert(Card(3,'Diamond') == Card(3,'Diamond'))
+    assert(not Card(3,'Diamond') == Card(3,'Spades'))
+    assert(Card(3,'Diamond') <= Card(5,'Spades'))
+    assert(not (Card(5,'Diamond') <= Card(3,'Spades')))
 
 def test_split_hands():
     deck = Deck(joker=True)

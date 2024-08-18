@@ -16,9 +16,7 @@ def valid_move(prev_move,new_move,start=False):
             else:
                 return False
     else:
-        print("ASD")
         if(prev_move_trump_card(prev_move)):
-            print("ASDD")
             return False
         elif(new_move_trump_card(new_move)):
             return True
@@ -72,37 +70,20 @@ def same_number_of_cards(prev_move,new_move):
     
 #Check that the new move is a higher value than the previous move
 def increasing_rank(prev_move,new_move):
-    prev_rank = None
-    new_rank = None
 
-    #Find the rank of the previous move
-    for card in prev_move:
-        if(card.rank=='Joker'):
-            continue
-        else:
-            prev_rank = card.rank 
+    #Find the card of the previous move
+    for prev_card in prev_move:
+        if(prev_card.rank !='Joker'):
             break
-    #If previous move is all Joker cards set value as 2
-    if(prev_rank == None):
-        prev_rank = 2
-
-    #Find the rank of the next move
-    for card in new_move:
-        if(card.rank=='Joker'):
-            continue
-        else:
-            new_rank = card.rank 
-            break
-    #If new move is all Joker cards set value as 2
-    if(new_rank == None):
-        new_rank = 2
     
-    #Check that the previous rank is less than the greater rank
-    card_ordering = [3,4,5,6,7,8,9,10,11,12,13,1,2]
-    prev_idx = card_ordering.index(prev_rank)
-    new_idx = card_ordering.index(new_rank)
+    #Find the card of the new move
+    for new_card in new_move:
+        if(new_card.rank !='Joker'):
+            break
 
-    if(new_idx >= prev_idx):
+    #Check if previous move rank is less than new move rank
+    if(prev_card <= new_card):
         return True
     else:
         return False
+    
